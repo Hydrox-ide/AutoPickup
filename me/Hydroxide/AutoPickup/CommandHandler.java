@@ -9,9 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandHandler implements CommandExecutor{
-
 	public static ArrayList<Player>pickupEnabled = new ArrayList<Player>();
-	String prefix = ChatColor.GRAY + "[" + ChatColor.RED + "AutoPickup" + ChatColor.GRAY + "]" + " ";
+	public static String prefix = ChatColor.GRAY + "[" + ChatColor.RED + "AutoPickup" + ChatColor.GRAY + "]" + " ";
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label,
@@ -26,10 +25,18 @@ public class CommandHandler implements CommandExecutor{
 			return false;
 		} else if(args.length == 1) {
 			if(args[0].equalsIgnoreCase("on")) {
+				if(pickupEnabled.contains(player)) {
+					player.sendMessage(prefix + ChatColor.DARK_RED + "AutoPickup is already enabled.");
+					return false;
+				}
 				pickupEnabled.add(player);
 				player.sendMessage(prefix + ChatColor.GREEN + "AutoPickup has been enabled.");
 				return true;
 			}else if(args[0].equalsIgnoreCase("off")) {
+				if(!(pickupEnabled.contains(player))) {
+					player.sendMessage(prefix + ChatColor.DARK_RED + "AutoPickup is already disabled.");
+					return false;
+				}
 				pickupEnabled.remove(player);
 				player.sendMessage(prefix + ChatColor.RED + "AutoPickup has been disabled.");
 				return true;
