@@ -1,0 +1,7 @@
+name: AutoPickup
+author: Hydroxide
+main: me.Hydroxide.AutoPickup.Main
+version: 1.0
+commands:
+  autopickup:
+    description: When on, all blocks broken will be put in your inventory.
